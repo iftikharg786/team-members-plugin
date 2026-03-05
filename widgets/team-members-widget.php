@@ -665,6 +665,15 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_box_shadow',
+                'selector' => '{{WRAPPER}} .team-member-card',
+            ]
+        );
+
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -692,6 +701,15 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .team-member-card:hover',
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_hover_box_shadow',
+                'selector' => '{{WRAPPER}} .team-member-card:hover',
+            ]
+        );
+
 
         $this->end_controls_tab();
 
