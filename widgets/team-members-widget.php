@@ -423,14 +423,30 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'show_divider',
+            [
+                'label' => esc_html__('Show Divider', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'team-members'),
+                'label_off' => esc_html__('Hide', 'team-members'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
             'divider_color',
             [
                 'label' => esc_html__('Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#cccccc',
                 'selectors' => ['{{WRAPPER}} .team-divider' => 'background-color: {{VALUE}}; border-color: {{VALUE}};'],
+                'condition' => [
+                    'show_divider' => 'yes',
+                ],
             ]
         );
+
 
         $this->add_responsive_control(
             'divider_width',
@@ -449,8 +465,12 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .team-divider' => 'width: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'show_divider' => 'yes',
+                ],
             ]
         );
+
 
         $this->add_responsive_control(
             'divider_height',
@@ -468,8 +488,12 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .team-divider' => 'height: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'show_divider' => 'yes',
+                ],
             ]
         );
+
 
         $this->add_responsive_control(
             'divider_align',
@@ -495,8 +519,35 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .team-divider' => 'margin-left: {{VALUE === "center" ? "auto" : (VALUE === "right" ? "auto" : "0")}}; margin-right: {{VALUE === "center" ? "auto" : (VALUE === "left" ? "auto" : "0")}};',
                 ],
+                'condition' => [
+                    'show_divider' => 'yes',
+                ],
             ]
         );
+
+        $this->add_responsive_control(
+            'divider_margin',
+            [
+                'label' => esc_html__('Spacing (Margin)', 'team-members'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'default' => [
+                    'top' => '10',
+                    'bottom' => '20',
+                    'left' => '0',
+                    'right' => '0',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-divider' => 'margin-top: {{TOP}}{{UNIT}}; margin-bottom: {{BOTTOM}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_divider' => 'yes',
+                ],
+            ]
+        );
+
 
 
         $this->add_control(
@@ -1244,6 +1295,10 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                     </h2>
                 <?php endif; ?>
 
+                <?php if ('yes' === $settings['show_divider']): ?>
+                    <div class="team-divider"></div>
+                <?php endif; ?>
+
                 <?php if (!empty($settings['sub_heading'])): ?>
                     <h3 class="team-subheading">
                         <?php echo esc_html($settings['sub_heading']); ?>
@@ -1257,7 +1312,6 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 <?php endif; ?>
             </div>
 
-            <div class="team-divider"></div>
 
             <?php if ($settings['team_members']): ?>
                 <div class="team-grid">
