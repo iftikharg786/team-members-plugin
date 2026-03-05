@@ -170,14 +170,25 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
+            'member_designation',
+            [
+                'label' => esc_html__('Designation/Role', 'team-members'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('Founder', 'team-members'),
+                'label_block' => true,
+            ]
+        );
+
+        $repeater->add_control(
             'member_role',
             [
-                'label' => esc_html__('Role/Bio', 'team-members'),
+                'label' => esc_html__('Biography', 'team-members'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Member role or biography goes here.', 'team-members'),
+                'default' => esc_html__('Member biography goes here.', 'team-members'),
                 'show_label' => true,
             ]
         );
+
 
         $repeater->add_control(
             'member_image',
@@ -224,24 +235,29 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 'default' => [
                     [
                         'member_name' => esc_html__('David McArdle', 'team-members'),
-                        'member_role' => esc_html__('Founder & Executive Director. David established ALBA in 2010 to provide high-level editorial and strategic publication support globally.', 'team-members'),
+                        'member_designation' => esc_html__('Founder & Executive Director', 'team-members'),
+                        'member_role' => esc_html__('David established ALBA in 2010 to provide high-level editorial and strategic publication support globally. He combines rigorous academic training with over a decade and a half of continuous editorial leadership.', 'team-members'),
                         'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                     [
                         'member_name' => esc_html__('Gulzhan Karibayeva', 'team-members'),
-                        'member_role' => esc_html__('Director of Academic Outreach (Central Asia & Middle East). Gulzhan leads ALBA’s outreach, supporting scholars in publishing at the highest international levels.', 'team-members'),
+                        'member_designation' => esc_html__('Director of Academic Outreach (Central Asia & Middle East)', 'team-members'),
+                        'member_role' => esc_html__('Gulzhan leads ALBA’s outreach, building trusted relationships with universities and research institutes, with a particular focus on supporting female academics.', 'team-members'),
                         'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                     [
                         'member_name' => esc_html__('Aidana Zhaishylyk', 'team-members'),
-                        'member_role' => esc_html__('Head of Strategic Development & Asia Partnerships. Aidana leads marketing strategy and institutional development across Asia.', 'team-members'),
+                        'member_designation' => esc_html__('Head of Strategic Development & Asia Partnerships', 'team-members'),
+                        'member_role' => esc_html__('Aidana leads marketing strategy and institutional development across Asia, currently as a PhD candidate in Public Administration with extensive research coordination experience.', 'team-members'),
                         'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                     [
                         'member_name' => esc_html__('Christopher Jack', 'team-members'),
-                        'member_role' => esc_html__('Operations and Administration Manager. Christopher oversees operational functions, ensuring professional and efficient internal systems.', 'team-members'),
+                        'member_designation' => esc_html__('Operations and Administration Manager', 'team-members'),
+                        'member_role' => esc_html__('Christopher oversees operational functions, ensuring professional and efficient internal systems. He brings analytical precision to ALBA’s financial and organisational processes.', 'team-members'),
                         'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
+
                 ],
 
                 'title_field' => '{{{ member_name }}}',
@@ -327,7 +343,32 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'header_padding',
+            [
+                'label' => esc_html__('Padding', 'team-members'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .team-header' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'header_margin',
+            [
+                'label' => esc_html__('Margin', 'team-members'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .team-header' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
+
 
         // Sub-heading and Divider Style
         $this->start_controls_section(
@@ -474,18 +515,24 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             'columns',
             [
                 'label' => esc_html__('Columns', 'team-members'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 6,
-                'step' => 1,
-                'default' => 3,
-                'tablet_default' => 2,
-                'mobile_default' => 1,
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                ],
+                'default' => '3',
+                'tablet_default' => '2',
+                'mobile_default' => '1',
                 'selectors' => [
                     '{{WRAPPER}} .team-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                 ],
             ]
         );
+
 
         $this->add_responsive_control(
             'column_gap',
@@ -535,6 +582,27 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'card_margin',
+            [
+                'label' => esc_html__('Margin', 'team-members'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-card' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs('card_style_tabs');
+
+        $this->start_controls_tab(
+            'card_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'team-members'),
+            ]
+        );
+
         $this->add_control(
             'card_bg_color',
             [
@@ -546,48 +614,136 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'card_padding',
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'label' => esc_html__('Padding', 'team-members'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'name' => 'card_border',
+                'selector' => '{{WRAPPER}} .team-member-card',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'card_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'team-members'),
+            ]
+        );
+
+        $this->add_control(
+            'card_hover_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'team-members'),
+                'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .team-member-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .team-member-card:hover' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'card_hover_border',
+                'selector' => '{{WRAPPER}} .team-member-card:hover',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'style_member_image_section',
+            [
+                'label' => esc_html__('Member Image Style', 'team-members'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'member_image_width',
+            [
+                'label' => esc_html__('Width', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'vw'],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 500],
+                    '%' => ['min' => 0, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-image-container img' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'card_border_radius',
+            'member_image_height',
+            [
+                'label' => esc_html__('Height', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'vh'],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 500],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-image-container img' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'member_image_object_fit',
+            [
+                'label' => esc_html__('Object Fit', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    '' => esc_html__('Default', 'team-members'),
+                    'fill' => esc_html__('Fill', 'team-members'),
+                    'cover' => esc_html__('Cover', 'team-members'),
+                    'contain' => esc_html__('Contain', 'team-members'),
+                ],
+                'default' => 'cover',
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-image-container img' => 'object-fit: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'member_image_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'team-members'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .team-member-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .team-member-image-container, {{WRAPPER}} .team-member-image-container img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'card_box_shadow',
-                'selector' => '{{WRAPPER}} .team-member-card',
+                'name' => 'member_image_border',
+                'selector' => '{{WRAPPER}} .team-member-image-container',
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'card_hover_box_shadow',
-                'label' => esc_html__('Hover Box Shadow', 'team-members'),
-                'selector' => '{{WRAPPER}} .team-member-card:hover',
+                'name' => 'member_image_box_shadow',
+                'selector' => '{{WRAPPER}} .team-member-image-container',
             ]
         );
 
         $this->end_controls_section();
+
+
 
         $this->start_controls_section(
             'style_member_text_section',
@@ -647,6 +803,86 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
+            'member_name_margin',
+            [
+                'label' => esc_html__('Margin', 'team-members'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-card h3' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'style_member_designation_section',
+            [
+                'label' => esc_html__('Member Designation Style', 'team-members'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'member_designation_color',
+            [
+                'label' => esc_html__('Color', 'team-members'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-designation' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'member_designation_typography',
+                'selector' => '{{WRAPPER}} .team-member-designation',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'member_designation_margin',
+            [
+                'label' => esc_html__('Margin', 'team-members'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-designation' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'member_designation_align',
+            [
+                'label' => esc_html__('Alignment', 'team-members'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'team-members'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'team-members'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'team-members'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-designation' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+
+
+        $this->add_responsive_control(
             'member_bio_align',
             [
                 'label' => esc_html__('Bio Alignment', 'team-members'),
@@ -695,7 +931,20 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'member_bio_margin',
+            [
+                'label' => esc_html__('Margin', 'team-members'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-card p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
+
 
         $this->start_controls_section(
             'style_overlay_section',
@@ -790,6 +1039,27 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'button_typography',
+                'selector' => '{{WRAPPER}} .team-member-btn',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_padding',
+            [
+                'label' => esc_html__('Padding', 'team-members'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .team-member-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -825,26 +1095,6 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'button_typography',
-                'selector' => '{{WRAPPER}} .team-member-btn',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'button_padding',
-            [
-                'label' => esc_html__('Padding', 'team-members'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .team-member-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
 
         $this->add_responsive_control(
             'button_border_radius',
@@ -981,7 +1231,14 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                                         <?php echo esc_html($item['member_name']); ?>
                                     </h3>
                                 <?php endif; ?>
+
+                                <?php if (!empty($item['member_designation'])): ?>
+                                    <div class="team-member-designation">
+                                        <?php echo esc_html($item['member_designation']); ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
+
                         </div>
                     <?php endforeach; ?>
                 </div>
