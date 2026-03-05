@@ -459,8 +459,8 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                     '%' => ['min' => 1, 'max' => 100],
                 ],
                 'default' => [
-                    'unit' => '%',
-                    'size' => 30,
+                    'unit' => 'px',
+                    'size' => 80,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .team-divider' => 'width: {{SIZE}}{{UNIT}};',
@@ -483,7 +483,7 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 1,
+                    'size' => 4,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .team-divider' => 'height: {{SIZE}}{{UNIT}};',
@@ -533,7 +533,7 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'default' => [
                     'top' => '10',
-                    'bottom' => '20',
+                    'bottom' => '15',
                     'left' => '0',
                     'right' => '0',
                     'unit' => 'px',
