@@ -437,24 +437,67 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Width', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'range' => ['px' => ['min' => 10, 'max' => 1200], '%' => ['min' => 1, 'max' => 100]],
-                'default' => ['unit' => '%', 'size' => 30],
-                'selectors' => ['{{WRAPPER}} .team-divider' => 'width: {{SIZE}}{{UNIT}};'],
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => ['min' => 10, 'max' => 1200],
+                    '%' => ['min' => 1, 'max' => 100],
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 30,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-divider' => 'width: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
         $this->add_responsive_control(
-            'divider_weight',
+            'divider_height',
             [
-                'label' => esc_html__('Weight (Height)', 'team-members'),
+                'label' => esc_html__('Weight (Thickness)', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'range' => ['px' => ['min' => 1, 'max' => 20]],
-                'default' => ['unit' => 'px', 'size' => 2],
-                'selectors' => ['{{WRAPPER}} .team-divider' => 'height: {{SIZE}}{{UNIT}};'],
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => ['min' => 1, 'max' => 20],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 1,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-divider' => 'height: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
+
+        $this->add_responsive_control(
+            'divider_align',
+            [
+                'label' => esc_html__('Alignment', 'team-members'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'team-members'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'team-members'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'team-members'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'prefix_class' => 'elementor-align-',
+                'selectors' => [
+                    '{{WRAPPER}} .team-divider' => 'margin-left: {{VALUE === "center" ? "auto" : (VALUE === "right" ? "auto" : "0")}}; margin-right: {{VALUE === "center" ? "auto" : (VALUE === "left" ? "auto" : "0")}};',
+                ],
+            ]
+        );
+
 
         $this->add_control(
             'divider_style',
