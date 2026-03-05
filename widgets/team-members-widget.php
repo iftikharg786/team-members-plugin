@@ -223,21 +223,27 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'member_name' => esc_html__('John Doe', 'team-members'),
-                        'member_role' => esc_html__('Senior Editor with over 15 years of experience in academic publishing and structural refinement.', 'team-members'),
+                        'member_name' => esc_html__('David McArdle', 'team-members'),
+                        'member_role' => esc_html__('Founder & Executive Director. David established ALBA in 2010 to provide high-level editorial and strategic publication support globally.', 'team-members'),
                         'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                     [
-                        'member_name' => esc_html__('Jane Smith', 'team-members'),
-                        'member_role' => esc_html__('Research Lead specializing in doctoral thesis support and institutional standards compliance.', 'team-members'),
+                        'member_name' => esc_html__('Gulzhan Karibayeva', 'team-members'),
+                        'member_role' => esc_html__('Director of Academic Outreach (Central Asia & Middle East). Gulzhan leads ALBA’s outreach, supporting scholars in publishing at the highest international levels.', 'team-members'),
                         'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                     [
-                        'member_name' => esc_html__('Robert Brown', 'team-members'),
-                        'member_role' => esc_html__('Policy Advisor focusing on publication-grade documents for international organisations.', 'team-members'),
+                        'member_name' => esc_html__('Aidana Zhaishylyk', 'team-members'),
+                        'member_role' => esc_html__('Head of Strategic Development & Asia Partnerships. Aidana leads marketing strategy and institutional development across Asia.', 'team-members'),
+                        'member_button_text' => esc_html__('View Profile', 'team-members'),
+                    ],
+                    [
+                        'member_name' => esc_html__('Christopher Jack', 'team-members'),
+                        'member_role' => esc_html__('Operations and Administration Manager. Christopher oversees operational functions, ensuring professional and efficient internal systems.', 'team-members'),
                         'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                 ],
+
                 'title_field' => '{{{ member_name }}}',
             ]
         );
