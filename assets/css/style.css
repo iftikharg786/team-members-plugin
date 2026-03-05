@@ -1,38 +1,36 @@
 /* Base Styles that shouldn't be overridden normally */
-.editing-services-widget-container {
+.team-members-widget-container {
     font-family: 'Playfair Display', serif;
 }
 
-.editing-services-widget-container .services-grid {
+.team-members-widget-container .team-grid {
     display: grid;
 }
 
-.editing-services-widget-container .service-card {
+.team-members-widget-container .team-member-card {
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    /* For images */
 }
 
-.editing-services-widget-container .service-card:hover {
+.team-members-widget-container .team-member-card:hover {
     transform: translateY(-5px);
 }
 
-.editing-services-widget-container .services-header {
+.team-members-widget-container .team-header {
     text-align: center;
     margin-bottom: 40px;
 }
 
-.editing-services-widget-container .service-image-container {
+.team-members-widget-container .team-member-image-container {
     width: 100%;
-    /* Portrait aspect ratio based on reference image */
     aspect-ratio: 3 / 4;
     position: relative;
     overflow: hidden;
 }
 
-.editing-services-widget-container .service-image-container img {
+.team-members-widget-container .team-member-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -42,29 +40,29 @@
     transition: transform 0.3s ease;
 }
 
-.editing-services-widget-container .service-image-container::before {
+.team-members-widget-container .team-member-image-container::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Default background, can be overridden by widget setting */
+    background-color: rgba(0, 0, 0, 0.6);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 1;
 }
 
-.editing-services-widget-container .service-card:hover .service-image-container::before,
-.editing-services-widget-container .service-card:hover .service-overlay {
+.team-members-widget-container .team-member-card:hover .team-member-image-container::before,
+.team-members-widget-container .team-member-card:hover .team-member-overlay {
     opacity: 1;
 }
 
-.editing-services-widget-container .service-card:hover .service-image-container img {
-    transform: scale(1.05); /* Optional zoom effect */
+.team-members-widget-container .team-member-card:hover .team-member-image-container img {
+    transform: scale(1.05);
 }
 
-.editing-services-widget-container .service-overlay {
+.team-members-widget-container .team-member-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -83,39 +81,39 @@
     color: #fff;
 }
 
-.editing-services-widget-container .service-overlay p {
+.team-members-widget-container .team-member-overlay p {
     margin-bottom: 20px;
-    color: #fff; /* Default color, can be overridden */
-}
-
-.editing-services-widget-container .service-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0073aa; /* Default background */
-    color: #fff; /* Default text color */
-    text-decoration: none;
-    border-radius: 4px; /* Default border radius */
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.editing-services-widget-container .service-btn:hover {
-    background-color: #005177; /* Default hover background */
     color: #fff;
 }
 
-.editing-services-widget-container .service-content {
+.team-members-widget-container .team-member-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.team-members-widget-container .team-member-btn:hover {
+    background-color: #005177;
+    color: #fff;
+}
+
+.team-members-widget-container .team-member-content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     padding: 20px 0;
 }
 
-.editing-services-widget-container .service-card h3 {
+.team-members-widget-container .team-member-card h3 {
     margin-top: 0;
 }
 
 /* Sub-heading */
-.editing-services-widget-container .services-subheading {
+.team-members-widget-container .team-subheading {
     font-size: 1.1rem;
     font-weight: 400;
     color: #666;
@@ -124,10 +122,11 @@
 }
 
 /* Divider */
-.editing-services-widget-container .services-divider {
+.team-members-widget-container .team-divider {
     width: 30%;
     height: 2px;
     background-color: #cccccc;
     margin: 20px auto;
     border: none;
 }
+

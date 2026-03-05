@@ -1,3 +1,3 @@
-# services-plugin
+# team-members-plugin
 
-A WordPress plugin for Elementor to display services in a grid with customizable layout and styling.
+A WordPress plugin for Elementor to display team members in a grid with customizable layout, styling, and hover effects.

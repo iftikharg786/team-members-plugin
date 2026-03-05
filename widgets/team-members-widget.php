@@ -5,13 +5,13 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Elementor Service Grid Widget.
+ * Elementor Team Members Widget.
  *
- * Elementor widget that inserts a service grid.
+ * Elementor widget that inserts a team members grid.
  *
  * @since 1.0.0
  */
-class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
+class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
 {
 
     /**
@@ -25,7 +25,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
      */
     public function get_name()
     {
-        return 'editing_services_grid';
+        return 'team_members_grid';
     }
 
     /**
@@ -39,7 +39,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Services', 'editing-services-widget');
+        return esc_html__('Team Members', 'team-members');
     }
 
     /**
@@ -95,7 +95,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
      */
     public function get_keywords()
     {
-        return ['services', 'grid', 'editing', 'cards'];
+        return ['team', 'members', 'grid', 'cards', 'people'];
     }
 
     /**
@@ -112,7 +112,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Header', 'editing-services-widget'),
+                'label' => esc_html__('Header', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -120,39 +120,39 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'section_title',
             [
-                'label' => esc_html__('Section Title', 'editing-services-widget'),
+                'label' => esc_html__('Section Title', 'team-members'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Editing Services', 'editing-services-widget'),
-                'placeholder' => esc_html__('Type your title here', 'editing-services-widget'),
+                'default' => esc_html__('Our Team', 'team-members'),
+                'placeholder' => esc_html__('Type your title here', 'team-members'),
             ]
         );
 
         $this->add_control(
             'sub_heading',
             [
-                'label' => esc_html__('Sub Heading', 'editing-services-widget'),
+                'label' => esc_html__('Sub Heading', 'team-members'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => '',
-                'placeholder' => esc_html__('Optional sub-heading', 'editing-services-widget'),
+                'placeholder' => esc_html__('Optional sub-heading', 'team-members'),
             ]
         );
 
         $this->add_control(
             'intro_line',
             [
-                'label' => esc_html__('Intro Line', 'editing-services-widget'),
+                'label' => esc_html__('Intro Line', 'team-members'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Specialist editorial support for academic research, doctoral work, and institutional publications.', 'editing-services-widget'),
-                'placeholder' => esc_html__('Type your intro line here', 'editing-services-widget'),
+                'default' => esc_html__('Meet the dedicated professionals behind our success.', 'team-members'),
+                'placeholder' => esc_html__('Type your intro line here', 'team-members'),
             ]
         );
 
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'services_section',
+            'team_members_section',
             [
-                'label' => esc_html__('Services', 'editing-services-widget'),
+                'label' => esc_html__('Team Members', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -160,29 +160,29 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
-            'service_title',
+            'member_name',
             [
-                'label' => esc_html__('Title', 'editing-services-widget'),
+                'label' => esc_html__('Name', 'team-members'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Service Title', 'editing-services-widget'),
+                'default' => esc_html__('Member Name', 'team-members'),
                 'label_block' => true,
             ]
         );
 
         $repeater->add_control(
-            'service_description',
+            'member_role',
             [
-                'label' => esc_html__('Description', 'editing-services-widget'),
+                'label' => esc_html__('Role/Bio', 'team-members'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Service description goes here.', 'editing-services-widget'),
+                'default' => esc_html__('Member role or biography goes here.', 'team-members'),
                 'show_label' => true,
             ]
         );
 
         $repeater->add_control(
-            'service_image',
+            'member_image',
             [
-                'label' => esc_html__('Choose Image', 'editing-services-widget'),
+                'label' => esc_html__('Choose Image', 'team-members'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -191,21 +191,21 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         );
 
         $repeater->add_control(
-            'service_button_text',
+            'member_button_text',
             [
-                'label' => esc_html__('Button Text', 'editing-services-widget'),
+                'label' => esc_html__('Button Text', 'team-members'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Read More', 'editing-services-widget'),
-                'placeholder' => esc_html__('Type button text here', 'editing-services-widget'),
+                'default' => esc_html__('View Profile', 'team-members'),
+                'placeholder' => esc_html__('Type button text here', 'team-members'),
             ]
         );
 
         $repeater->add_control(
-            'service_link',
+            'member_link',
             [
-                'label' => esc_html__('Link', 'editing-services-widget'),
+                'label' => esc_html__('Link', 'team-members'),
                 'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'editing-services-widget'),
+                'placeholder' => esc_html__('https://your-link.com', 'team-members'),
                 'default' => [
                     'url' => '',
                     'is_external' => true,
@@ -216,29 +216,29 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-            'services',
+            'team_members',
             [
-                'label' => esc_html__('Services List', 'editing-services-widget'),
+                'label' => esc_html__('Team Members List', 'team-members'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'service_title' => esc_html__('Journal Articles and Books', 'editing-services-widget'),
-                        'service_description' => esc_html__('Submission-ready refinement for journal articles, book chapters, and scholarly monographs. We strengthen structure, argumentation, clarity, and linguistic precision while preserving the author’s voice.', 'editing-services-widget'),
-                        'service_button_text' => esc_html__('Read More', 'editing-services-widget'),
+                        'member_name' => esc_html__('John Doe', 'team-members'),
+                        'member_role' => esc_html__('Senior Editor with over 15 years of experience in academic publishing and structural refinement.', 'team-members'),
+                        'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                     [
-                        'service_title' => esc_html__('Doctoral and Master’s Theses', 'editing-services-widget'),
-                        'service_description' => esc_html__('Comprehensive, chapter-by-chapter refinement aligned with examiner expectations and institutional standards. Structured, consistent, and defensible.', 'editing-services-widget'),
-                        'service_button_text' => esc_html__('Read More', 'editing-services-widget'),
+                        'member_name' => esc_html__('Jane Smith', 'team-members'),
+                        'member_role' => esc_html__('Research Lead specializing in doctoral thesis support and institutional standards compliance.', 'team-members'),
+                        'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                     [
-                        'service_title' => esc_html__('Institutional and Policy Documents', 'editing-services-widget'),
-                        'service_description' => esc_html__('Clear, publication-grade documents for research institutes, policy programmes, and international organisations. Precision in language, coherence in structure, and consistency with formal style requirements.', 'editing-services-widget'),
-                        'service_button_text' => esc_html__('Read More', 'editing-services-widget'),
+                        'member_name' => esc_html__('Robert Brown', 'team-members'),
+                        'member_role' => esc_html__('Policy Advisor focusing on publication-grade documents for international organisations.', 'team-members'),
+                        'member_button_text' => esc_html__('View Profile', 'team-members'),
                     ],
                 ],
-                'title_field' => '{{{ service_title }}}',
+                'title_field' => '{{{ member_name }}}',
             ]
         );
 
@@ -248,7 +248,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_header_section',
             [
-                'label' => esc_html__('Header Style', 'editing-services-widget'),
+                'label' => esc_html__('Header Style', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -256,29 +256,29 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'header_align',
             [
-                'label' => esc_html__('Alignment', 'editing-services-widget'),
+                'label' => esc_html__('Alignment', 'team-members'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'editing-services-widget'),
+                        'title' => esc_html__('Left', 'team-members'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'editing-services-widget'),
+                        'title' => esc_html__('Center', 'team-members'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'editing-services-widget'),
+                        'title' => esc_html__('Right', 'team-members'),
                         'icon' => 'eicon-text-align-right',
                     ],
                     'justify' => [
-                        'title' => esc_html__('Justified', 'editing-services-widget'),
+                        'title' => esc_html__('Justified', 'team-members'),
                         'icon' => 'eicon-text-align-justify',
                     ],
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .services-header' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .team-header' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -286,10 +286,10 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'header_color',
             [
-                'label' => esc_html__('Title Color', 'editing-services-widget'),
+                'label' => esc_html__('Title Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .services-header h2' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .team-header h2' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -298,17 +298,17 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'header_typography',
-                'selector' => '{{WRAPPER}} .services-header h2',
+                'selector' => '{{WRAPPER}} .team-header h2',
             ]
         );
 
         $this->add_control(
             'intro_color',
             [
-                'label' => esc_html__('Intro Line Color', 'editing-services-widget'),
+                'label' => esc_html__('Intro Line Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .services-header p' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .team-header p' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -317,7 +317,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'intro_typography',
-                'selector' => '{{WRAPPER}} .services-header p',
+                'selector' => '{{WRAPPER}} .team-header p',
             ]
         );
 
@@ -327,7 +327,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_subheading_section',
             [
-                'label' => esc_html__('Sub-Heading Style', 'editing-services-widget'),
+                'label' => esc_html__('Sub-Heading Style', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -335,25 +335,25 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'subheading_align',
             [
-                'label' => esc_html__('Alignment', 'editing-services-widget'),
+                'label' => esc_html__('Alignment', 'team-members'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => ['title' => esc_html__('Left', 'editing-services-widget'), 'icon' => 'eicon-text-align-left'],
-                    'center' => ['title' => esc_html__('Center', 'editing-services-widget'), 'icon' => 'eicon-text-align-center'],
-                    'right' => ['title' => esc_html__('Right', 'editing-services-widget'), 'icon' => 'eicon-text-align-right'],
-                    'justify' => ['title' => esc_html__('Justify', 'editing-services-widget'), 'icon' => 'eicon-text-align-justify'],
+                    'left' => ['title' => esc_html__('Left', 'team-members'), 'icon' => 'eicon-text-align-left'],
+                    'center' => ['title' => esc_html__('Center', 'team-members'), 'icon' => 'eicon-text-align-center'],
+                    'right' => ['title' => esc_html__('Right', 'team-members'), 'icon' => 'eicon-text-align-right'],
+                    'justify' => ['title' => esc_html__('Justify', 'team-members'), 'icon' => 'eicon-text-align-justify'],
                 ],
                 'default' => 'center',
-                'selectors' => ['{{WRAPPER}} .services-subheading' => 'text-align: {{VALUE}};'],
+                'selectors' => ['{{WRAPPER}} .team-subheading' => 'text-align: {{VALUE}};'],
             ]
         );
 
         $this->add_control(
             'subheading_color',
             [
-                'label' => esc_html__('Color', 'editing-services-widget'),
+                'label' => esc_html__('Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => ['{{WRAPPER}} .services-subheading' => 'color: {{VALUE}};'],
+                'selectors' => ['{{WRAPPER}} .team-subheading' => 'color: {{VALUE}};'],
             ]
         );
 
@@ -361,7 +361,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'subheading_typography',
-                'selector' => '{{WRAPPER}} .services-subheading',
+                'selector' => '{{WRAPPER}} .team-subheading',
             ]
         );
 
@@ -370,7 +370,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_divider_section',
             [
-                'label' => esc_html__('Divider Style', 'editing-services-widget'),
+                'label' => esc_html__('Divider Style', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -378,65 +378,65 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'divider_color',
             [
-                'label' => esc_html__('Color', 'editing-services-widget'),
+                'label' => esc_html__('Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#cccccc',
-                'selectors' => ['{{WRAPPER}} .services-divider' => 'background-color: {{VALUE}}; border-color: {{VALUE}};'],
+                'selectors' => ['{{WRAPPER}} .team-divider' => 'background-color: {{VALUE}}; border-color: {{VALUE}};'],
             ]
         );
 
         $this->add_responsive_control(
             'divider_width',
             [
-                'label' => esc_html__('Width', 'editing-services-widget'),
+                'label' => esc_html__('Width', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => ['px' => ['min' => 10, 'max' => 1200], '%' => ['min' => 1, 'max' => 100]],
                 'default' => ['unit' => '%', 'size' => 30],
-                'selectors' => ['{{WRAPPER}} .services-divider' => 'width: {{SIZE}}{{UNIT}};'],
+                'selectors' => ['{{WRAPPER}} .team-divider' => 'width: {{SIZE}}{{UNIT}};'],
             ]
         );
 
         $this->add_responsive_control(
             'divider_weight',
             [
-                'label' => esc_html__('Weight (Height)', 'editing-services-widget'),
+                'label' => esc_html__('Weight (Height)', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => ['px' => ['min' => 1, 'max' => 20]],
                 'default' => ['unit' => 'px', 'size' => 2],
-                'selectors' => ['{{WRAPPER}} .services-divider' => 'height: {{SIZE}}{{UNIT}};'],
+                'selectors' => ['{{WRAPPER}} .team-divider' => 'height: {{SIZE}}{{UNIT}};'],
             ]
         );
 
         $this->add_control(
             'divider_style',
             [
-                'label' => esc_html__('Style', 'editing-services-widget'),
+                'label' => esc_html__('Style', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'solid' => esc_html__('Solid', 'editing-services-widget'),
-                    'dashed' => esc_html__('Dashed', 'editing-services-widget'),
-                    'dotted' => esc_html__('Dotted', 'editing-services-widget'),
+                    'solid' => esc_html__('Solid', 'team-members'),
+                    'dashed' => esc_html__('Dashed', 'team-members'),
+                    'dotted' => esc_html__('Dotted', 'team-members'),
                 ],
                 'default' => 'solid',
-                'selectors' => ['{{WRAPPER}} .services-divider' => 'border-style: {{VALUE}};'],
+                'selectors' => ['{{WRAPPER}} .team-divider' => 'border-style: {{VALUE}};'],
             ]
         );
 
         $this->add_control(
             'divider_align',
             [
-                'label' => esc_html__('Alignment', 'editing-services-widget'),
+                'label' => esc_html__('Alignment', 'team-members'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => ['title' => esc_html__('Left', 'editing-services-widget'), 'icon' => 'eicon-text-align-left'],
-                    'center' => ['title' => esc_html__('Center', 'editing-services-widget'), 'icon' => 'eicon-text-align-center'],
-                    'right' => ['title' => esc_html__('Right', 'editing-services-widget'), 'icon' => 'eicon-text-align-right'],
+                    'left' => ['title' => esc_html__('Left', 'team-members'), 'icon' => 'eicon-text-align-left'],
+                    'center' => ['title' => esc_html__('Center', 'team-members'), 'icon' => 'eicon-text-align-center'],
+                    'right' => ['title' => esc_html__('Right', 'team-members'), 'icon' => 'eicon-text-align-right'],
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .services-divider' => 'margin-left: auto; margin-right: auto;',
+                    '{{WRAPPER}} .team-divider' => 'margin-left: auto; margin-right: auto;',
                 ],
                 'condition' => ['divider_align' => 'center'],
             ]
@@ -445,12 +445,12 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'divider_gap',
             [
-                'label' => esc_html__('Spacing', 'editing-services-widget'),
+                'label' => esc_html__('Spacing', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => ['px' => ['min' => 0, 'max' => 80]],
                 'default' => ['unit' => 'px', 'size' => 20],
-                'selectors' => ['{{WRAPPER}} .services-divider' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}};'],
+                'selectors' => ['{{WRAPPER}} .team-divider' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}};'],
             ]
         );
 
@@ -459,7 +459,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_layout_section',
             [
-                'label' => esc_html__('Layout', 'editing-services-widget'),
+                'label' => esc_html__('Layout', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -467,7 +467,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'columns',
             [
-                'label' => esc_html__('Columns', 'editing-services-widget'),
+                'label' => esc_html__('Columns', 'team-members'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1,
                 'max' => 6,
@@ -476,7 +476,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
                 'tablet_default' => 2,
                 'mobile_default' => 1,
                 'selectors' => [
-                    '{{WRAPPER}} .services-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .team-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                 ],
             ]
         );
@@ -484,7 +484,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'column_gap',
             [
-                'label' => esc_html__('Column Gap', 'editing-services-widget'),
+                'label' => esc_html__('Column Gap', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -495,7 +495,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .services-grid' => 'column-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .team-grid' => 'column-gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -503,7 +503,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'row_gap',
             [
-                'label' => esc_html__('Row Gap', 'editing-services-widget'),
+                'label' => esc_html__('Row Gap', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -514,7 +514,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .services-grid' => 'row-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .team-grid' => 'row-gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -524,7 +524,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_card_section',
             [
-                'label' => esc_html__('Card Style', 'editing-services-widget'),
+                'label' => esc_html__('Card Style', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -532,10 +532,10 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'card_bg_color',
             [
-                'label' => esc_html__('Background Color', 'editing-services-widget'),
+                'label' => esc_html__('Background Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .service-card' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .team-member-card' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -543,11 +543,11 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_padding',
             [
-                'label' => esc_html__('Padding', 'editing-services-widget'),
+                'label' => esc_html__('Padding', 'team-members'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .service-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .team-member-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -555,11 +555,11 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'editing-services-widget'),
+                'label' => esc_html__('Border Radius', 'team-members'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .service-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .team-member-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -568,7 +568,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'card_box_shadow',
-                'selector' => '{{WRAPPER}} .service-card',
+                'selector' => '{{WRAPPER}} .team-member-card',
             ]
         );
 
@@ -576,58 +576,58 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'card_hover_box_shadow',
-                'label' => esc_html__('Hover Box Shadow', 'editing-services-widget'),
-                'selector' => '{{WRAPPER}} .service-card:hover',
+                'label' => esc_html__('Hover Box Shadow', 'team-members'),
+                'selector' => '{{WRAPPER}} .team-member-card:hover',
             ]
         );
 
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'style_services_text_section',
+            'style_member_text_section',
             [
-                'label' => esc_html__('Services Text Style', 'editing-services-widget'),
+                'label' => esc_html__('Member Text Style', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_responsive_control(
-            'service_text_align',
+            'member_text_align',
             [
-                'label' => esc_html__('Alignment', 'editing-services-widget'),
+                'label' => esc_html__('Alignment', 'team-members'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'editing-services-widget'),
+                        'title' => esc_html__('Left', 'team-members'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'editing-services-widget'),
+                        'title' => esc_html__('Center', 'team-members'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'editing-services-widget'),
+                        'title' => esc_html__('Right', 'team-members'),
                         'icon' => 'eicon-text-align-right',
                     ],
                     'justify' => [
-                        'title' => esc_html__('Justified', 'editing-services-widget'),
+                        'title' => esc_html__('Justified', 'team-members'),
                         'icon' => 'eicon-text-align-justify',
                     ],
                 ],
                 'default' => 'left',
                 'selectors' => [
-                    '{{WRAPPER}} .service-content' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .team-member-content' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'service_title_color',
+            'member_name_color',
             [
-                'label' => esc_html__('Service Title Color', 'editing-services-widget'),
+                'label' => esc_html__('Member Name Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .service-card h3' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .team-member-card h3' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -635,48 +635,48 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'service_title_typography',
-                'selector' => '{{WRAPPER}} .service-card h3',
+                'name' => 'member_name_typography',
+                'selector' => '{{WRAPPER}} .team-member-card h3',
             ]
         );
 
         $this->add_responsive_control(
-            'service_desc_align',
+            'member_bio_align',
             [
-                'label' => esc_html__('Description Alignment', 'editing-services-widget'),
+                'label' => esc_html__('Bio Alignment', 'team-members'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'editing-services-widget'),
+                        'title' => esc_html__('Left', 'team-members'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'editing-services-widget'),
+                        'title' => esc_html__('Center', 'team-members'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'editing-services-widget'),
+                        'title' => esc_html__('Right', 'team-members'),
                         'icon' => 'eicon-text-align-right',
                     ],
                     'justify' => [
-                        'title' => esc_html__('Justified', 'editing-services-widget'),
+                        'title' => esc_html__('Justified', 'team-members'),
                         'icon' => 'eicon-text-align-justify',
                     ],
                 ],
                 'default' => 'left',
                 'selectors' => [
-                    '{{WRAPPER}} .service-card p' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .team-member-card p' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'service_desc_color',
+            'member_bio_color',
             [
-                'label' => esc_html__('Service Description Color', 'editing-services-widget'),
+                'label' => esc_html__('Member Bio Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .service-card p' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .team-member-card p' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -684,8 +684,8 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'service_desc_typography',
-                'selector' => '{{WRAPPER}} .service-card p',
+                'name' => 'member_bio_typography',
+                'selector' => '{{WRAPPER}} .team-member-card p',
             ]
         );
 
@@ -694,7 +694,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_overlay_section',
             [
-                'label' => esc_html__('Image Overlay Style', 'editing-services-widget'),
+                'label' => esc_html__('Image Overlay Style', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -702,11 +702,11 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'overlay_bg_color',
             [
-                'label' => esc_html__('Overlay Background Color', 'editing-services-widget'),
+                'label' => esc_html__('Overlay Background Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => 'rgba(0, 0, 0, 0.6)',
                 'selectors' => [
-                    '{{WRAPPER}} .service-image-container::before' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .team-member-image-container::before' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -714,29 +714,29 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'overlay_align',
             [
-                'label' => esc_html__('Text Alignment', 'editing-services-widget'),
+                'label' => esc_html__('Text Alignment', 'team-members'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'editing-services-widget'),
+                        'title' => esc_html__('Left', 'team-members'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'editing-services-widget'),
+                        'title' => esc_html__('Center', 'team-members'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'editing-services-widget'),
+                        'title' => esc_html__('Right', 'team-members'),
                         'icon' => 'eicon-text-align-right',
                     ],
                     'justify' => [
-                        'title' => esc_html__('Justified', 'editing-services-widget'),
+                        'title' => esc_html__('Justified', 'team-members'),
                         'icon' => 'eicon-text-align-justify',
                     ],
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .service-overlay p' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .team-member-overlay p' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -746,7 +746,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_button_section',
             [
-                'label' => esc_html__('Button Style', 'editing-services-widget'),
+                'label' => esc_html__('Button Style', 'team-members'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -756,18 +756,18 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'button_normal_tab',
             [
-                'label' => esc_html__('Normal', 'editing-services-widget'),
+                'label' => esc_html__('Normal', 'team-members'),
             ]
         );
 
         $this->add_control(
             'button_text_color',
             [
-                'label' => esc_html__('Text Color', 'editing-services-widget'),
+                'label' => esc_html__('Text Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .service-btn' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .team-member-btn' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -775,11 +775,11 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'button_bg_color',
             [
-                'label' => esc_html__('Background Color', 'editing-services-widget'),
+                'label' => esc_html__('Background Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#0073aa',
                 'selectors' => [
-                    '{{WRAPPER}} .service-btn' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .team-member-btn' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -789,17 +789,17 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'button_hover_tab',
             [
-                'label' => esc_html__('Hover', 'editing-services-widget'),
+                'label' => esc_html__('Hover', 'team-members'),
             ]
         );
 
         $this->add_control(
             'button_hover_text_color',
             [
-                'label' => esc_html__('Text Color', 'editing-services-widget'),
+                'label' => esc_html__('Text Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .service-btn:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .team-member-btn:hover' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -807,11 +807,11 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'button_hover_bg_color',
             [
-                'label' => esc_html__('Background Color', 'editing-services-widget'),
+                'label' => esc_html__('Background Color', 'team-members'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#005177',
                 'selectors' => [
-                    '{{WRAPPER}} .service-btn:hover' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .team-member-btn:hover' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -824,18 +824,18 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
-                'selector' => '{{WRAPPER}} .service-btn',
+                'selector' => '{{WRAPPER}} .team-member-btn',
             ]
         );
 
         $this->add_responsive_control(
             'button_padding',
             [
-                'label' => esc_html__('Padding', 'editing-services-widget'),
+                'label' => esc_html__('Padding', 'team-members'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .service-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .team-member-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -843,11 +843,11 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'editing-services-widget'),
+                'label' => esc_html__('Border Radius', 'team-members'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .service-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .team-member-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -855,7 +855,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_width',
             [
-                'label' => esc_html__('Button Width', 'editing-services-widget'),
+                'label' => esc_html__('Button Width', 'team-members'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'vw'],
                 'range' => [
@@ -871,7 +871,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .service-btn' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .team-member-btn' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -879,25 +879,25 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_align',
             [
-                'label' => esc_html__('Alignment', 'editing-services-widget'),
+                'label' => esc_html__('Alignment', 'team-members'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => esc_html__('Left', 'editing-services-widget'),
+                        'title' => esc_html__('Left', 'team-members'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'editing-services-widget'),
+                        'title' => esc_html__('Center', 'team-members'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'flex-end' => [
-                        'title' => esc_html__('Right', 'editing-services-widget'),
+                        'title' => esc_html__('Right', 'team-members'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .service-btn' => 'align-self: {{VALUE}};',
+                    '{{WRAPPER}} .team-member-btn' => 'align-self: {{VALUE}};',
                 ],
             ]
         );
@@ -918,9 +918,9 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
         ?>
-        <div class="editing-services-widget-container">
+        <div class="team-members-widget-container">
 
-            <div class="services-header">
+            <div class="team-header">
                 <?php if (!empty($settings['section_title'])): ?>
                     <h2>
                         <?php echo esc_html($settings['section_title']); ?>
@@ -928,7 +928,7 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
                 <?php endif; ?>
 
                 <?php if (!empty($settings['sub_heading'])): ?>
-                    <h3 class="services-subheading">
+                    <h3 class="team-subheading">
                         <?php echo esc_html($settings['sub_heading']); ?>
                     </h3>
                 <?php endif; ?>
@@ -940,39 +940,39 @@ class Elementor_Service_Grid_Widget extends \Elementor\Widget_Base
                 <?php endif; ?>
             </div>
 
-            <div class="services-divider"></div>
+            <div class="team-divider"></div>
 
-            <?php if ($settings['services']): ?>
-                <div class="services-grid">
-                    <?php foreach ($settings['services'] as $item): ?>
-                        <div class="service-card elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
+            <?php if ($settings['team_members']): ?>
+                <div class="team-grid">
+                    <?php foreach ($settings['team_members'] as $item): ?>
+                        <div class="team-member-card elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
 
-                            <?php if (!empty($item['service_image']['url'])): ?>
-                                <div class="service-image-container">
-                                    <img src="<?php echo esc_url($item['service_image']['url']); ?>"
-                                        alt="<?php echo esc_attr($item['service_title']); ?>">
-                                    <div class="service-overlay">
-                                        <?php if (!empty($item['service_description'])): ?>
+                            <?php if (!empty($item['member_image']['url'])): ?>
+                                <div class="team-member-image-container">
+                                    <img src="<?php echo esc_url($item['member_image']['url']); ?>"
+                                        alt="<?php echo esc_attr($item['member_name']); ?>">
+                                    <div class="team-member-overlay">
+                                        <?php if (!empty($item['member_role'])): ?>
                                             <p>
-                                                <?php echo wp_kses_post($item['service_description']); ?>
+                                                <?php echo wp_kses_post($item['member_role']); ?>
                                             </p>
                                         <?php endif; ?>
 
                                         <?php
-                                        if (!empty($item['service_link']['url'])) {
-                                            $this->add_link_attributes('service_link_' . $item['_id'], $item['service_link']);
-                                            $btn_text = !empty($item['service_button_text']) ? esc_html($item['service_button_text']) : esc_html__('Read More', 'editing-services-widget');
-                                            echo '<a class="service-btn" ' . $this->get_render_attribute_string('service_link_' . $item['_id']) . '>' . $btn_text . '</a>';
+                                        if (!empty($item['member_link']['url'])) {
+                                            $this->add_link_attributes('member_link_' . $item['_id'], $item['member_link']);
+                                            $btn_text = !empty($item['member_button_text']) ? esc_html($item['member_button_text']) : esc_html__('View Profile', 'team-members');
+                                            echo '<a class="team-member-btn" ' . $this->get_render_attribute_string('member_link_' . $item['_id']) . '>' . $btn_text . '</a>';
                                         }
                                         ?>
                                     </div>
                                 </div>
                             <?php endif; ?>
 
-                            <div class="service-content">
-                                <?php if (!empty($item['service_title'])): ?>
+                            <div class="team-member-content">
+                                <?php if (!empty($item['member_name'])): ?>
                                     <h3>
-                                        <?php echo esc_html($item['service_title']); ?>
+                                        <?php echo esc_html($item['member_name']); ?>
                                     </h3>
                                 <?php endif; ?>
                             </div>
