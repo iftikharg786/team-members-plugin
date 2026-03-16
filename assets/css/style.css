@@ -1,10 +1,18 @@
-/* Base Styles that shouldn't be overridden normally */
 .team-members-widget-container {
     font-family: 'Playfair Display', serif;
+    display: flow-root !important; /* Ensure the container always wraps its content height */
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
 }
 
 .team-members-widget-container .team-grid {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .team-members-widget-container .team-member-card {
@@ -12,6 +20,9 @@
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    position: relative;
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .team-members-widget-container .team-member-card:hover {
@@ -20,14 +31,16 @@
 
 .team-members-widget-container .team-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px !important;
 }
 
 .team-members-widget-container .team-member-image-container {
     width: 100%;
-    aspect-ratio: 3 / 4;
     position: relative;
     overflow: hidden;
+    /* Ratio hack for better compatibility */
+    height: 0;
+    padding-bottom: 133.33%; /* 3 / 4 aspect ratio */
 }
 
 .team-members-widget-container .team-member-image-container img {
@@ -90,29 +103,31 @@
 
 
 .team-members-widget-container .team-member-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0073aa;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
+    display: inline-block !important;
+    padding: 10px 25px !important;
+    background-color: #7A9342 !important; /* Force branded green */
+    color: #ffffff !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .team-members-widget-container .team-member-btn:hover {
-    background-color: #005177;
-    color: #fff;
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 .team-members-widget-container .team-member-content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 20px 0;
+    display: block !important;
+    padding: 25px 20px !important;
+    position: relative;
+    z-index: 2;
+    background: #ffffff;
 }
 
 .team-members-widget-container .team-member-card h3 {
-    margin: 0 0 5px;
+    margin-top: 0;
+    margin-bottom: 5px;
     font-size: 1.25rem;
     font-weight: 700;
 }
@@ -127,26 +142,93 @@
 }
 
 
+/* Image link wrapper */
+.team-members-widget-container .team-member-image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =====================================================
+   Mobile: Show button on image by default (no hover on touch)
+   ===================================================== */
+@media (max-width: 768px) {
+    .team-members-widget-container .team-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+        width: 100% !important;
+    }
+
+    .team-members-widget-container .team-member-card {
+        display: flex !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* Hide the dark overlay by default on mobile so image looks natural */
+    .team-members-widget-container .team-member-image-container::before {
+        opacity: 0 !important;
+    }
+
+    /* Show a slight overlay only if bio is enabled for better text readability */
+    .team-members-widget-container .team-member-card.show-mobile-bio .team-member-image-container::before {
+        opacity: 1 !important;
+        background-color: rgba(0, 0, 0, 0.45);
+    }
+
+    /* Always show the overlay content (button) on mobile */
+    .team-members-widget-container .team-member-overlay {
+        opacity: 1 !important;
+        justify-content: flex-end;   /* Push content to bottom of image */
+        padding-bottom: 18px;
+    }
+
+    /* Hide the bio text on mobile by default, but show if card has show-mobile-bio class */
+    .team-members-widget-container .team-member-overlay p {
+        display: none;
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+    
+    .team-members-widget-container .team-member-card.show-mobile-bio .team-member-overlay p {
+        display: block;
+    }
+
+    /* Disable the card lift-on-hover animation on mobile */
+    .team-members-widget-container .team-member-card:hover {
+        transform: none;
+    }
+}
+
 /* Sub-heading */
 .team-members-widget-container .team-subheading {
     font-size: 1.1rem;
     font-weight: 400;
     color: #666;
-    margin: 8px 0 16px;
+    margin-top: 0;
+    margin-bottom: 0; /* Controlled by Elementor */
     text-align: center;
 }
 
 /* Divider */
 .team-members-widget-container .team-divider {
     width: 80px;
-    height: 4px;
-    background-color: #cccccc;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    height: 1px; /* Default thinness */
+    background-color: #ccc;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 20px; /* Default gap back */
     border: none;
     display: block;
+}
+
+/* Ensure distance from next section */
+.team-members-widget-container {
+    margin-bottom: 50px !important;
 }
 
 

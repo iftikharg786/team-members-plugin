@@ -226,6 +226,18 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $repeater->add_control(
+            'show_mobile_bio',
+            [
+                'label' => esc_html__('Show Bio on Mobile', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'team-members'),
+                'label_off' => esc_html__('Hide', 'team-members'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
         $this->add_control(
             'team_members',
             [
@@ -305,22 +317,18 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'header_color',
+        $this->add_responsive_control(
+            'title_spacing',
             [
-                'label' => esc_html__('Title Color', 'team-members'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .team-header h2' => 'color: {{VALUE}}',
+                'label' => esc_html__('Spacing (Gap)', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 100],
                 ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'header_typography',
-                'selector' => '{{WRAPPER}} .team-header h2',
+                'selectors' => [
+                    '{{WRAPPER}} .team-header h2' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -335,11 +343,18 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+        $this->add_responsive_control(
+            'intro_spacing',
             [
-                'name' => 'intro_typography',
-                'selector' => '{{WRAPPER}} .team-header p',
+                'label' => esc_html__('Spacing (Gap)', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-header p' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -404,11 +419,43 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+        $this->add_responsive_control(
+            'subheading_spacing',
             [
-                'name' => 'subheading_typography',
-                'selector' => '{{WRAPPER}} .team-subheading',
+                'label' => esc_html__('Spacing (Gap)', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-subheading' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'style_header_layout_section',
+            [
+                'label' => esc_html__('Header Layout', 'team-members'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'header_grid_gap',
+            [
+                'label' => esc_html__('Gap below Header', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 200],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-header' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+                ],
             ]
         );
 
@@ -476,17 +523,30 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
             'divider_height',
             [
                 'label' => esc_html__('Weight (Thickness)', 'team-members'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', 'em', 'rem', 'custom'],
-                'range' => [
-                    'px' => ['min' => 1, 'max' => 20],
-                ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 4,
+                    'size' => 1,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .team-divider' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_divider' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'divider_spacing',
+            [
+                'label' => esc_html__('Spacing (Gap)', 'team-members'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => ['min' => 0, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .team-divider' => 'margin-bottom: {{SIZE}}{{UNIT}}; margin-top: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'show_divider' => 'yes',
@@ -1315,10 +1375,29 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
 
             <?php if ($settings['team_members']): ?>
                 <div class="team-grid">
-                    <?php foreach ($settings['team_members'] as $item): ?>
-                        <div class="team-member-card elementor-repeater-item-<?php echo esc_attr($item['_id']); ?>">
+                    <?php foreach ($settings['team_members'] as $item): 
+                        $show_mobile_bio_class = ('yes' === $item['show_mobile_bio']) ? ' show-mobile-bio' : '';
+                        ?>
+                        <div class="team-member-card elementor-repeater-item-<?php echo esc_attr($item['_id']); ?><?php echo esc_attr($show_mobile_bio_class); ?>">
 
                             <?php if (!empty($item['member_image']['url'])): ?>
+                                <?php 
+                                    $link_settings = !empty($item['member_link']['url']) ? $item['member_link'] : null;
+                                    $has_link = !empty($link_settings['url']);
+                                    
+                                    if ($has_link) {
+                                        $url = $link_settings['url'];
+                                        // Force internal if it's an anchor link or contains a hash pointing to this site
+                                        if ( strpos( $url, '#' ) !== false ) {
+                                            $site_url = get_site_url();
+                                            if ( 0 === strpos( $url, '#' ) || strpos( $url, $site_url ) !== false ) {
+                                                $link_settings['is_external'] = '';
+                                            }
+                                        }
+                                        $this->add_link_attributes('member_image_link_' . $item['_id'], $link_settings);
+                                        echo '<a ' . $this->get_render_attribute_string('member_image_link_' . $item['_id']) . ' class="team-member-image-link">';
+                                    }
+                                ?>
                                 <div class="team-member-image-container">
                                     <img src="<?php echo esc_url($item['member_image']['url']); ?>"
                                         alt="<?php echo esc_attr($item['member_name']); ?>">
@@ -1330,14 +1409,15 @@ class Elementor_Team_Members_Widget extends \Elementor\Widget_Base
                                         <?php endif; ?>
 
                                         <?php
-                                        if (!empty($item['member_link']['url'])) {
-                                            $this->add_link_attributes('member_link_' . $item['_id'], $item['member_link']);
+                                        if ($has_link) {
+                                            $this->add_link_attributes('member_btn_link_' . $item['_id'], $item['member_link']);
                                             $btn_text = !empty($item['member_button_text']) ? esc_html($item['member_button_text']) : esc_html__('View Profile', 'team-members');
-                                            echo '<a class="team-member-btn" ' . $this->get_render_attribute_string('member_link_' . $item['_id']) . '>' . $btn_text . '</a>';
+                                            echo '<span class="team-member-btn">' . $btn_text . '</span>';
                                         }
                                         ?>
                                     </div>
                                 </div>
+                                <?php if ($has_link) echo '</a>'; ?>
                             <?php endif; ?>
 
                             <div class="team-member-content">

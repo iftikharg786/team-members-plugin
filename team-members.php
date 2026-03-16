@@ -1,17 +1,28 @@
 <?php
 /**
- * Plugin Name: Team Members
+ * Plugin Name: Team Members Grid
  * Description: A premium team members grid widget with specific default content and deep Elementor style integration.
  * Plugin URI:  https://yellowhoster.com
  * Version:     1.0.0
  * Author:      yellow hoster
  * Author URI:  https://yellowhoster.com
  * Text Domain: team-members
+ * Update URI:  false
  */
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+
+/**
+ * Prevent WordPress from checking for updates for this plugin on WordPress.org
+ */
+add_filter('site_transient_update_plugins', function($value) {
+    if (isset($value->response[plugin_basename(__FILE__)])) {
+        unset($value->response[plugin_basename(__FILE__)]);
+    }
+    return $value;
+});
 
 /**
  * Register Team Members Widget.
